@@ -7,15 +7,15 @@
 )
 
 (defsrc
-  caps a    s    d    f         h    j    k    l    ;    u
+  caps a    s    d    f         h    j    k    l    ;    u      i
 )
 
 (deflayer base
-  @cap @a   @s   @d   @f        _    @j   @k   @l   @;   _
+  @cap @a   @s   @d   @f        _    @j   @k   @l   @;   _      _
 )
 
 (deflayer edit
-  _    _    _    _    _         bspc left up   down rght C-bspc
+  _    _    _    _    _         bspc left down rght _    C-bspc up
 )
 
 (defalias
