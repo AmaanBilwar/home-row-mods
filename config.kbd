@@ -6,6 +6,13 @@
   process-unmapped-keys yes
 )
 
+(defvar
+  tap-time 200
+  hold-time 200
+  hold-time-mid 225
+  hold-time-slow 250
+)
+
 (defsrc
   caps a    s    d    f         h    j    k    l    ;    u      i
 )
@@ -19,15 +26,15 @@
 )
 
 (defalias
-  cap  (tap-hold-press 200 200 esc (layer-while-held edit))
+  cap  (tap-hold-press $tap-time $hold-time esc (layer-while-held edit))
 
-  a    (tap-hold 200 200 a    lmet)
-  s    (tap-hold 200 200 s    lalt)
-  d    (tap-hold 200 200 d    lsft)
-  f    (tap-hold 200 200 f    lctl)
+  a    (tap-hold $tap-time $hold-time-slow a    lmet)
+  s    (tap-hold $tap-time $hold-time-mid  s    lalt)
+  d    (tap-hold $tap-time $hold-time      d    lsft)
+  f    (tap-hold $tap-time $hold-time      f    lctl)
 
-  j    (tap-hold 200 200 j    rctl)
-  k    (tap-hold 200 200 k    rsft)
-  l    (tap-hold 200 200 l    ralt)
-  ;    (tap-hold 200 200 ;    rmet)
+  j    (tap-hold $tap-time $hold-time      j    rctl)
+  k    (tap-hold $tap-time $hold-time      k    rsft)
+  l    (tap-hold $tap-time $hold-time-mid  l    ralt)
+  ;    (tap-hold $tap-time $hold-time-slow ;    rmet)
 )
