@@ -1,0 +1,40 @@
+;; QWERTY home-row mods for Kanata v1.11.0.
+;; Tap sends the normal letter. Hold sends the modifier.
+;; Tap Caps for Escape. Hold Caps for the edit layer.
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+  hold-time-mid 225
+  hold-time-slow 250
+)
+
+(defsrc
+  caps a    s    d    f         h    j    k    l    ;    u      i
+)
+
+(deflayer base
+  @cap @a   @s   @d   @f        _    @j   @k   @l   @;   _      _
+)
+
+(deflayer edit
+  _    _    _    _    _         bspc left down rght bspc C-bspc up
+)
+
+(defalias
+  cap  (tap-hold-press $tap-time $hold-time esc (layer-while-held edit))
+
+  a    (tap-hold $tap-time $hold-time-slow a    lmet)
+  s    (tap-hold $tap-time $hold-time-mid  s    lalt)
+  d    (tap-hold $tap-time $hold-time      d    lsft)
+  f    (tap-hold $tap-time $hold-time      f    lctl)
+
+  j    (tap-hold $tap-time $hold-time      j    rctl)
+  k    (tap-hold $tap-time $hold-time      k    rsft)
+  l    (tap-hold $tap-time $hold-time-mid  l    ralt)
+  ;    (tap-hold $tap-time $hold-time-slow ;    rmet)
+)
