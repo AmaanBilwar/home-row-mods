@@ -1,6 +1,6 @@
-;; QWERTY home-row mods for Kanata v1.11.0.
-;; Tap sends the normal letter. Hold sends the modifier.
-;; Tap Caps for Escape. Hold Caps for the edit layer.
+;; Two-layer keyboard layout.
+;; Tap Left Alt to switch to lower layer, hold for regular Left Alt.
+;; Tap Right Alt to switch to main layer, hold for regular Right Alt.
 
 (defcfg
   process-unmapped-keys yes
@@ -9,32 +9,30 @@
 (defvar
   tap-time 200
   hold-time 200
-  hold-time-mid 225
-  hold-time-slow 250
 )
 
 (defsrc
-  caps a    s    d    f         h    j    k    l    ;    u      i
+  q    w    e    r    t    y    u    i    o    p    [
+  caps a    s    d    f    g    h    j    k    l    ;    '
+  z    x    c    v    b    n    m    ,    .    /
+  lalt ralt lctl
 )
 
-(deflayer base
-  @cap @a   @s   @d   @f        _    @j   @k   @l   @;   _      _
+(deflayer main
+  q    w    e    r    t    y    u    i    o    p    bspc
+  lctl a    s    d    f    g    h    j    k    l    ;    '
+  z    x    c    v    b    n    m    ,    .    /
+  @la  @ra  esc
 )
 
-(deflayer edit
-  _    _    _    _    _         bspc left down rght bspc C-bspc up
+(deflayer lower
+  S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc
+  lctl 1    2    3    4    5    6    7    8    9    0    \
+  S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
+  @la  @ra  esc
 )
 
 (defalias
-  cap  (tap-hold-press $tap-time $hold-time esc (layer-while-held edit))
-
-  a    (tap-hold $tap-time $hold-time-slow a    lmet)
-  s    (tap-hold $tap-time $hold-time-mid  s    lalt)
-  d    (tap-hold $tap-time $hold-time      d    lsft)
-  f    (tap-hold $tap-time $hold-time      f    lctl)
-
-  j    (tap-hold $tap-time $hold-time      j    rctl)
-  k    (tap-hold $tap-time $hold-time      k    rsft)
-  l    (tap-hold $tap-time $hold-time-mid  l    ralt)
-  ;    (tap-hold $tap-time $hold-time-slow ;    rmet)
+  la (tap-hold $tap-time $hold-time (layer-switch lower) lalt)
+  ra (tap-hold $tap-time $hold-time (layer-switch main)  ralt)
 )
