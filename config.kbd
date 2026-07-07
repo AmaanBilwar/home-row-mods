@@ -22,17 +22,19 @@
   q    w    e    r    t    y    u    i    o    p    bspc XX
   lctl a    s    d    f    g    h    j    k    l    ;    '
   z    x    c    v    b    n    m    ,    .    /
-  @la  @ra  esc
+  @la-lower @ra-lower esc
 )
 
 (deflayer lower
   S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc XX
   lctl 1    2    3    4    5    6    7    8    9    0    \
   S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
-  @la  @ra  esc
+  @la-main @ra-main esc
 )
 
 (defalias
-  la (tap-hold $tap-time $hold-time (layer-switch lower) lalt)
-  ra (tap-hold $tap-time $hold-time (layer-switch main)  ralt)
+  la-lower (tap-hold $tap-time $hold-time (layer-switch lower) lalt)
+  ra-lower (tap-hold $tap-time $hold-time (layer-switch lower) ralt)
+  la-main  (tap-hold $tap-time $hold-time (layer-switch main)  lalt)
+  ra-main  (tap-hold $tap-time $hold-time (layer-switch main)  ralt)
 )
