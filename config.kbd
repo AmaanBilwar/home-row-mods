@@ -13,7 +13,7 @@
 
 (defsrc
   1    2    3    4    5    6    7    8    9    0    -    =
-  q    w    e    r    t    y    u    i    o    p    [    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    bspc
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   z    x    c    v    b    n    m    ,    .    /
   lalt ralt lctl rctrl
@@ -21,7 +21,7 @@
 
 (deflayer main
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  q    w    e    r    t    y    u    i    o    p    bspc bspc
+  @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    XX
   z    x    c    v    b    n    m    ,    .    /
   @la-lower ret esc esc
@@ -29,13 +29,22 @@
 
 (deflayer lower
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc bspc
+  @tab-nav S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc bspc
   lctl 1    2    3    4    5    6    7    8    9    0    \    XX
   S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
   @la-main ret esc esc
 )
 
+(deflayer nav
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    up   _    _    _    _
+  _    _    _    _    _    _    bspc left down rght del  _    _
+  _    _    _    _    _    _    _    _    _    _
+  _    _    _    _
+)
+
 (defalias
+  tab-nav  (tap-hold-press $tap-time $hold-time tab (layer-while-held nav))
   la-lower (tap-hold $tap-time $hold-time (layer-switch lower) lalt)
   la-main  (tap-hold $tap-time $hold-time (layer-switch main)  lalt)
 )
