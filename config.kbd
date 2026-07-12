@@ -1,6 +1,6 @@
 ;; Two-layer keyboard layout.
-;; Tap Left Alt to switch layers, hold for regular Left Alt.
-;; Right Alt is mapped to Enter.
+;; Tap Left Alt: single tap -> lower, double tap -> main, hold -> Left Alt.
+;; Right Alt: tap -> main, hold -> Enter.
 
 (defcfg
   process-unmapped-keys yes
@@ -20,19 +20,19 @@
 )
 
 (deflayer main
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  1    2    3    4    5    6    7    8    9    0    -    =
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    XX
   z    x    c    v    b    n    m    ,    .    /
-  @la-mode ret esc esc
+  @la-mode @ra-main-ret esc esc
 )
 
 (deflayer lower
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @tab-nav S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc bspc
-  lctl 1    2    3    4    5    6    7    8    9    0    \    XX
-  S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
-  @la-mode ret esc esc
+  S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S--  S-=
+  @tab-nav S-9  S-0  [    ]    S-[  S-]  7    8    9    XX   bspc bspc
+  lctl S-=  -    S-8  /    =    XX   4    5    6    0    XX   XX
+  S-,  S-.  S--  S-2  \    XX   1    2    3    .
+  @la-mode @ra-main-ret esc esc
 )
 
 (deflayer nav
@@ -51,4 +51,5 @@
                (layer-switch main)
              ))
              lalt)
+  ra-main-ret (tap-hold $tap-time $hold-time (layer-switch main) ret)
 )
