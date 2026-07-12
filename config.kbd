@@ -1,6 +1,6 @@
 ;; Two-layer keyboard layout.
 ;; Tap Left Alt: single tap -> lower, double tap -> main, hold -> Left Alt.
-;; Right Alt: tap -> main, hold -> Enter.
+;; Right Alt: tap -> main, hold -> Right Alt.
 
 (defcfg
   process-unmapped-keys yes
@@ -24,7 +24,7 @@
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    XX
   z    x    c    v    b    n    m    ,    .    /
-  @la-mode @ra-main-ret esc esc
+  @la-mode @ra-main esc ret
 )
 
 (deflayer lower
@@ -32,7 +32,7 @@
   @tab-nav S-9  S-0  [    ]    S-[  S-]  7    8    9    XX   bspc bspc
   lctl S-=  -    S-8  /    =    XX   4    5    6    0    XX   XX
   S-,  S-.  S--  S-2  \    XX   1    2    3    .
-  @la-mode @ra-main-ret esc esc
+  @la-mode @ra-main esc ret
 )
 
 (deflayer nav
@@ -51,5 +51,5 @@
                (layer-switch main)
              ))
              lalt)
-  ra-main-ret (tap-hold $tap-time $hold-time (layer-switch main) ret)
+  ra-main (tap-hold $tap-time $hold-time (layer-switch main) ralt)
 )
