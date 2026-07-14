@@ -1,5 +1,5 @@
 ;; Two-layer keyboard layout.
-;; Tap Left Alt to toggle main/lower; hold for regular Left Alt.
+;; Hold Left Alt for the lower layer; release to return to main.
 ;; Right Alt is Enter. Left/Right Ctrl are Escape.
 
 (defcfg
@@ -24,7 +24,7 @@
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    XX
   z    x    c    v    b    n    m    ,    .    /
-  @la-lower ret esc esc
+  @la-hold ret esc esc
 )
 
 (deflayer lower
@@ -32,7 +32,7 @@
   @tab-nav S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc bspc
   lctl 1    2    3    4    5    6    7    8    9    0    \    XX
   S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
-  @la-main ret esc esc
+  _ ret esc esc
 )
 
 (deflayer nav
@@ -45,6 +45,5 @@
 
 (defalias
   tab-nav  (tap-hold-press $tap-time $hold-time tab (layer-while-held nav))
-  la-lower (tap-hold $tap-time $hold-time (layer-switch lower) lalt)
-  la-main  (tap-hold $tap-time $hold-time (layer-switch main)  lalt)
+  la-hold  (tap-hold-press $tap-time $hold-time lalt (layer-while-held lower))
 )
