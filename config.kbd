@@ -1,6 +1,6 @@
 ;; Two-layer keyboard layout.
 ;; Hold Left Alt for the lower layer; release to return to main.
-;; Right Alt is Enter. Left/Right Ctrl are Escape.
+;; Right Alt is Left Alt. Left/Right Ctrl are Escape.
 
 (defcfg
   process-unmapped-keys yes
@@ -22,7 +22,7 @@
 (deflayer main
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
-  lctl a    s    d    f    g    h    j    k    l    ;    '    A-spc
+  lctl a    s    d    f    g    h    j    k    l    ;    '    ret
   z    x    c    v    b    n    m    ,    .    /
   @la-hold ret esc esc
 )
@@ -30,7 +30,7 @@
 (deflayer lower
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @tab-nav S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  bspc bspc
-  lctl 1    2    3    4    5    6    7    8    9    0    \    A-spc
+  lctl 1    2    3    4    5    6    7    8    9    0    \    ret
   S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
   _ ret esc esc
 )
